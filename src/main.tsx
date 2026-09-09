@@ -12,6 +12,7 @@ import '@fontsource/plus-jakarta-sans/800.css';
 import App from './App';
 import './styles.css';
 import './styles/aset.css';
+import './styles/rab.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

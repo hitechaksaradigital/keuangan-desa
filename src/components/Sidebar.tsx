@@ -14,7 +14,7 @@ interface NavItemConfig {
 }
 
 const navItems: NavItemConfig[] = [
-  { label: 'Perencanaan & APBDes', icon: Wallet },
+  { label: 'Perencanaan & APBDes', icon: Wallet, path: '/rab' },
   { label: 'Penatausahaan & Kas', icon: HandCoins },
   { label: 'Aset & BUMDes', icon: Buildings, path: '/aset' },
   { label: 'Laporan & Audit', icon: ClipboardText },
@@ -59,7 +59,8 @@ export function Sidebar({ currentPath = '/', onNavigate }: SidebarProps) {
               const IconComponent = item.icon;
               const isActive =
                 (item.path === '/aset' && currentPath === '/aset') ||
-                (item.path === '/' && currentPath !== '/aset');
+                (item.path === '/rab' && currentPath === '/rab') ||
+                (item.path === '/' && currentPath === '/' && !['/aset', '/rab'].includes(currentPath));
 
               return (
                 <a
@@ -91,7 +92,8 @@ export function Sidebar({ currentPath = '/', onNavigate }: SidebarProps) {
           const IconComponent = item.icon;
           const isActive =
             (item.path === '/aset' && currentPath === '/aset') ||
-            (item.path === '/' && currentPath !== '/aset');
+            (item.path === '/rab' && currentPath === '/rab') ||
+            (item.path === '/' && currentPath === '/' && !['/aset', '/rab'].includes(currentPath));
 
           return (
             <a
