@@ -7,15 +7,36 @@ import {
 } from '@phosphor-icons/react';
 import { logoUrl } from '../data/portal';
 
-const navItems = [
-  { label: 'Perencanaan & APBDes', icon: Wallet, active: false },
-  { label: 'Penatausahaan & Kas', icon: HandCoins, active: false },
-  { label: 'Aset & BUMDes', icon: Buildings, active: false },
-  { label: 'Laporan & Audit', icon: ClipboardText, active: false },
-  { label: 'Transparansi Publik', icon: GlobeHemisphereWest, active: true },
+interface NavItemConfig {
+  label: string;
+  icon: typeof Wallet;
+  path?: string;
+}
+
+const navItems: NavItemConfig[] = [
+  { label: 'Perencanaan & APBDes', icon: Wallet },
+  { label: 'Penatausahaan & Kas', icon: HandCoins },
+  { label: 'Aset & BUMDes', icon: Buildings, path: '/aset' },
+  { label: 'Laporan & Audit', icon: ClipboardText },
+  { label: 'Transparansi Publik', icon: GlobeHemisphereWest, path: '/' },
 ];
 
-export function Sidebar() {
+interface SidebarProps {
+  currentPath?: string;
+  onNavigate?: (path: string) => void;
+}
+
+export function Sidebar({ currentPath = '/', onNavigate }: SidebarProps) {
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    item: NavItemConfig
+  ) => {
+    if (item.path) {
+      e.preventDefault();
+      onNavigate?.(item.path);
+    }
+  };
+
   return (
     <>
       <aside className="sidebar" aria-label="Navigasi utama SISKEUDES">
@@ -36,14 +57,19 @@ export function Sidebar() {
           <nav className="sidebar-nav">
             {navItems.map((item) => {
               const IconComponent = item.icon;
+              const isActive =
+                (item.path === '/aset' && currentPath === '/aset') ||
+                (item.path === '/' && currentPath !== '/aset');
+
               return (
                 <a
                   key={item.label}
-                  href={item.active ? '#portal-transparansi' : '#'}
-                  className={item.active ? 'active' : undefined}
-                  aria-current={item.active ? 'page' : undefined}
+                  href={item.path || '#'}
+                  className={isActive ? 'active' : undefined}
+                  aria-current={isActive ? 'page' : undefined}
+                  onClick={(e) => handleNavClick(e, item)}
                 >
-                  <IconComponent size={20} weight={item.active ? 'fill' : 'regular'} />
+                  <IconComponent size={20} weight={isActive ? 'fill' : 'regular'} />
                   <span>{item.label}</span>
                 </a>
               );
@@ -63,14 +89,19 @@ export function Sidebar() {
       <nav className="mobile-nav" aria-label="Navigasi modul">
         {navItems.map((item) => {
           const IconComponent = item.icon;
+          const isActive =
+            (item.path === '/aset' && currentPath === '/aset') ||
+            (item.path === '/' && currentPath !== '/aset');
+
           return (
             <a
               key={item.label}
-              href={item.active ? '#portal-transparansi' : '#'}
-              className={item.active ? 'active' : undefined}
-              aria-current={item.active ? 'page' : undefined}
+              href={item.path || '#'}
+              className={isActive ? 'active' : undefined}
+              aria-current={isActive ? 'page' : undefined}
+              onClick={(e) => handleNavClick(e, item)}
             >
-              <IconComponent size={18} weight={item.active ? 'fill' : 'regular'} />
+              <IconComponent size={18} weight={isActive ? 'fill' : 'regular'} />
               <span>{item.label}</span>
             </a>
           );
