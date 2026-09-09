@@ -7,26 +7,65 @@
   --tertiary: #676000;
   --tertiary-container: #b7ae4b;
   --tertiary-fixed: #f0e67c;
+  --on-primary: #ffffff;
   --on-primary-container: #aa86fe;
   --surface: #f9f9f9;
-  --surface-container: #eeeeee;
-  --surface-container-low: #f4f3f3;
+  --surface-container: #f0eef2;
+  --surface-container-low: #f6f3f8;
   --surface-container-lowest: #ffffff;
-  --surface-container-high: #e8e8e8;
-  --surface-container-highest: #e2e2e2;
-  --surface-variant: #e2e2e2;
-  --surface-dim: #dadada;
-  --on-surface: #1a1c1c;
-  --on-surface-variant: #494452;
-  --inverse-surface: #2f3131;
-  --inverse-on-surface: #f1f1f1;
+  --surface-container-high: #e8e5ec;
+  --surface-container-highest: #e2e0e5;
+  --surface-variant: #e7e0ec;
+  --surface-dim: #dad8dd;
+  --on-surface: #1d192b;
+  --on-surface-variant: #494553;
+  --inverse-surface: #2f2b36;
+  --inverse-on-surface: #f5eff7;
   --outline-variant: #cbc3d4;
+  --outline: #7a7484;
   --error: #ba1a1a;
   --primary-fixed: #e9ddff;
   --primary-fixed-dim: #d0bcff;
   --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-currency: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+/* Dark mode - proper Material 3 dark tokens + premium overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #d0bcff;
+    --primary-container: #4f378a;
+    --secondary: #d2bcf3;
+    --secondary-container: #4a3a6b;
+    --secondary-fixed: #4a3a6b;
+    --tertiary: #d8cc4a;
+    --tertiary-container: #565200;
+    --tertiary-fixed: #565200;
+    --on-primary: #371e73;
+    --on-primary-container: #e9ddff;
+    --surface: #141218;
+    --surface-container: #1e1c21;
+    --surface-container-low: #1c1a1f;
+    --surface-container-lowest: #1a1920;
+    --surface-container-high: #2b2930;
+    --surface-container-highest: #36343b;
+    --surface-variant: #2b2831;
+    --surface-dim: #141218;
+    --on-surface: #e8e0f0;
+    --on-surface-variant: #cac4d0;
+    --inverse-surface: #e8e0f0;
+    --inverse-on-surface: #1a1920;
+    --outline-variant: #49454f;
+    --outline: #938f99;
+    --error: #ffb4ab;
+    --primary-fixed: #e9ddff;
+    --primary-fixed-dim: #d0bcff;
+  }
 }
 
 *,
@@ -50,6 +89,211 @@ body {
   background: var(--surface-container);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  transition: background-color 0.22s ease, color 0.22s ease;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: var(--surface);
+  }
+
+  /* Header & Sidebar dark */
+  .sidebar {
+    background: #1c1a1f;
+    border-right-color: #2b2930;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.32);
+  }
+  .sidebar-brand {
+    background: #1c1a1f;
+    border-bottom-color: #2b2930;
+  }
+  .sidebar-brand-logo {
+    background: #2b2930;
+    border-color: #36343b;
+  }
+  .sidebar-brand-text strong { color: #e8e0f0; }
+  .sidebar-brand-text span { color: #a8a0b8; }
+  .fiscal-year-card {
+    background: linear-gradient(135deg, #252330 0%, #1e1c2a 100%);
+    border-color: #2b2930;
+  }
+  .fiscal-year-card-label { color: #a89cc8; }
+  .fiscal-year-card-sub { color: #8a7fb0; }
+  .fiscal-year-card strong { background: #d0bcff; color: #1a1040; box-shadow: none; }
+  .sidebar-nav-label { color: #7a7588; }
+  .sidebar-nav a { color: #c8c4d0; }
+  .sidebar-nav-icon {
+    background: #2b2930;
+    border-color: #36343b;
+    color: #c8c4d0;
+  }
+  .sidebar-nav a:hover {
+    background: #2b2930;
+    color: #e8e0f0;
+    border-color: #36343b;
+  }
+  .sidebar-nav a:hover .sidebar-nav-icon {
+    background: #36343b;
+    color: #e8e0f0;
+  }
+  .sidebar-nav a.active {
+    background: #d0bcff;
+    color: #1a1040;
+    border-color: #d0bcff;
+  }
+  .sidebar-nav a.active .sidebar-nav-icon {
+    background: rgba(26, 16, 64, 0.12);
+    border-color: rgba(26, 16, 64, 0.14);
+    color: #1a1040;
+  }
+  .database-status {
+    background: #201e26;
+    border-color: #2b2930;
+  }
+  .database-status-title strong { color: #e8e0f0; }
+  .database-status-desc { color: #a8a0b8; }
+  .mobile-nav {
+    background: #1c1a1f;
+    border-bottom-color: #2b2930;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+  .mobile-nav a {
+    background: #2b2930;
+    border-color: #36343b;
+    color: #c8c4d0;
+  }
+  .mobile-nav a.active {
+    background: #d0bcff;
+    color: #1a1040;
+    border-color: #d0bcff;
+  }
+
+  .top-header {
+    background: rgba(20, 18, 24, 0.84);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.4);
+    border-bottom: 1px solid #2b2930;
+  }
+  .header-badge { background: #2b2930; }
+  .header-badge strong { color: #e8e0f0; }
+  .header-badge > span:last-child { color: #a8a0b8; }
+  .sync-badge { background: #3a3450; color: #d0bcff; }
+  .profile-copy strong { color: #e8e0f0; }
+  .profile-copy span { color: #a8a0b8; }
+
+  /* Content - transparansi publik */
+  .main-content { background: var(--surface); }
+  .content-section {
+    background: #1e1c21;
+    box-shadow: 0 1px 12px rgba(0,0,0,0.32);
+    border: 1px solid #2b2930;
+  }
+  .section-eyebrow { color: #d0bcff; }
+  .section-heading > div > h2 { color: #e8e0f0; }
+  .section-heading > div > p { color: #a8a0b8; }
+  .update-badge {
+    background: #2b2930;
+    color: #e8e0f0;
+    box-shadow: none;
+    border: 1px solid #36343b;
+  }
+
+  /* Hero retains gradient but soften text for dark */
+  .hero-section {
+    box-shadow: 0 10px 24px -6px rgba(0,0,0,0.5);
+  }
+  .hero-copy h1 { color: #ffffff; }
+  .hero-subtitle { color: #e9ddff; }
+  .hero-description { color: #d8d0e8; }
+  .hero-metric-card { background: rgba(255,255,255,0.07); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+
+  .budget-card-header { border-bottom-color: #2b2930; }
+  .budget-card-header h3 { color: #e8e0f0; }
+  .budget-card-header > span { color: #a8a0b8; }
+  .card-tag-primary { background: #d0bcff; color: #1a1040; }
+  .card-tag-tertiary { background: #565200; color: #f0e64a; }
+  .budget-icon-primary { background: #2b2640; color: #d0bcff; }
+  .budget-icon-tertiary { background: #2a2815; color: #d8cc4a; }
+  .donut-track { stroke: #2b2930; }
+  .donut-center span { color: #a8a0b8; }
+  .donut-center strong { color: #d0bcff; }
+  .legend-label { color: #e8e0f0; }
+  .legend-value span { color: #a8a0b8; }
+  .progress-track { background: #2b2930; }
+  .info-strip { background: #252330; color: #c8c4d0; }
+  .info-strip.split-strip a { color: #d0bcff; }
+  .spending-box { background: #252330; border: 1px solid #2b2930; }
+  .spending-box h4 { color: #e8e0f0; }
+  .spending-box p { color: #a8a0b8; }
+
+  .project-heading { color: #e8e0f0; }
+  .filter-tabs { background: #1e1c21; border: 1px solid #2b2930; }
+  .filter-tabs button { color: #a8a0b8; }
+  .filter-tabs button[aria-pressed='true'] { background: #d0bcff; color: #1a1040; }
+  .map-card { background: #1e1c21; border: 1px solid #2b2930; }
+  .map-legend { background: rgba(28,26,31,0.92); color: #e8e0f0; border: 1px solid #2b2930; }
+  .map-footer { color: #a8a0b8; }
+  .map-footer > strong { color: #d0bcff; }
+  .project-card { background: #1e1c21; border: 1px solid #2b2930; box-shadow: 0 1px 12px rgba(0,0,0,0.24); }
+  .project-card h4 { color: #e8e0f0; }
+  .project-card > div > p { color: #a8a0b8; }
+  .project-facts { color: #a8a0b8; }
+  .project-facts dt { color: #e8e0f0; }
+  .project-button { background: #2b2930; color: #e8e0f0; }
+  .project-button:hover { background: #36343b; }
+  .project-button.primary { background: #d0bcff; color: #1a1040; }
+
+  .portal-card { background: #1e1c21; border: 1px solid #2b2930; }
+  .portal-card-heading { border-bottom-color: #2b2930; }
+  .portal-card-heading h2 { color: #e8e0f0; }
+  .portal-description { color: #a8a0b8; }
+  .document-item { background: #252330; }
+  .document-item:hover { background: #2b2930; }
+  .document-file strong { color: #e8e0f0; }
+  .document-file span { color: #a8a0b8; }
+  .pdf-icon { background: #2a1a1a; color: #ffb4ab; }
+  .download-button { background: #2b2930; color: #d0bcff; }
+  .download-button:hover { background: #d0bcff; color: #1a1040; }
+  .verification-strip { background: #252330; border: 1px solid #2b2930; }
+  .verification-strip > div { color: #e8e0f0; }
+  .verification-strip strong { color: #d0bcff; }
+
+  .form-field label { color: #e8e0f0; }
+  .form-field input, .form-field select, .form-field textarea {
+    background: #252330;
+    color: #e8e0f0;
+    border-color: #36343b;
+  }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: #7a7588; }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+    background: #1e1c21;
+    border-color: #d0bcff;
+    box-shadow: 0 0 0 3px rgba(208,188,255,0.14);
+  }
+  .anonymous-check label { color: #a8a0b8; }
+  .submit-button { background: #d0bcff; color: #1a1040; }
+  .submit-button:hover { background: #e9ddff; }
+  .form-alert { background: #1a2e22; color: #a7f3d0; border: 1px solid #14532d; }
+
+  .answered-header { border-bottom-color: #2b2930; }
+  .answered-header h2 { color: #e8e0f0; }
+  .response-badge { background: #2b2930; color: #a8a0b8; }
+  .answered-card { background: #252330; border: 1px solid #2b2930; }
+  .answered-meta > span:first-child { background: #2b2930; color: #e8e0f0; }
+  .answered-card h3 { color: #d0bcff; }
+  .answered-card > div > p { color: #a8a0b8; }
+  .official-response { background: #1e1c21; }
+  .official-response > div strong { color: #d0bcff; }
+  .official-response > p { color: #a8a0b8; }
+
+  .modal-backdrop { background: rgba(0,0,0,0.62); }
+  .project-modal { background: #1e1c21; }
+  .modal-header { background: #1a1920; }
+  .modal-body { color: #e8e0f0; }
+  .modal-facts-grid { background: #252330; }
+  .modal-description > p { color: #e8e0f0; }
+  .modal-info-grid > div { background: #252330; }
+  .modal-footer { background: #1a1920; border-top: 1px solid #2b2930; }
+  .modal-secondary-button { background: #2b2930; color: #e8e0f0; }
 }
 
 img {
